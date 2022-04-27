@@ -1,0 +1,21 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['mb','gs://${_BUCKET}']
+    id: "bucket creation"
+
+  - name: 'gcr.io/cloud-builders/gsutil'
+    entrypoint: bash
+    args:
+    - '-c'
+    - |
+      gsutil iam ch user:neeharika5samboji@gmail.com:objectViewer gs://${_BUCKET}
+    id: "Adding permission"
+    waitFor: ["bucket creation"]
+  
+  #- name: 'gcr.io/cloud-builders/gsutil'
+  #  args: ['rm','-r','gs://${_BUCKET}']
+  #  waitFor: ["Adding permission"]
+    
+
+substitutions:
+  _BUCKET: 'bucket4_sn185238'
