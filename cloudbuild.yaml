@@ -12,9 +12,9 @@ steps:
     id: "Adding permission"
     waitFor: ["bucket creation"]
   
-  #- name: 'gcr.io/cloud-builders/gsutil'
-  #  args: ['rm','-r','gs://${_BUCKET}']
-  #  waitFor: ["Adding permission"]
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['rm','-r','gs://${_BUCKET}']
+    waitFor: ["Adding permission"]
     
 
 substitutions:
